@@ -1,20 +1,20 @@
 CREATE DATABASE IF NOT EXISTS publications;
 USE publications;
 
-CREATE TABLE authors
+CREATE TABLE `publications`.`authors`
 (
   au_id  INT PRIMARY KEY AUTO_INCREMENT,
   author VARCHAR(25) NOT NULL
 );
 
-CREATE TABLE publishers
+CREATE TABLE `publications`.`publishers`
 (
   pub_id    INT PRIMARY KEY AUTO_INCREMENT,
   publisher VARCHAR(255) NOT NULL,
   url       VARCHAR(255)
 );
 
-CREATE TABLE titles
+CREATE TABLE `publications`.`titles`
 (
   title_id INT PRIMARY KEY AUTO_INCREMENT,
   title    VARCHAR(255) NOT NULL,
@@ -23,14 +23,14 @@ CREATE TABLE titles
   FOREIGN KEY (pub_id) REFERENCES publishers (pub_id)
 );
 
-CREATE TABLE wwwsites
+CREATE TABLE `publications`.`wwwsites`
 (
   site_id INT PRIMARY KEY AUTO_INCREMENT,
   site    VARCHAR(255) NOT NULL,
   url     VARCHAR(255)
 );
 
-CREATE TABLE wwwsiteauthors
+CREATE TABLE `publications`.`wwwsiteauthors`
 (
   au_id   INT,
   FOREIGN KEY (au_id) REFERENCES authors (au_id),
@@ -38,7 +38,7 @@ CREATE TABLE wwwsiteauthors
   FOREIGN KEY (site_id) REFERENCES wwwsites(site_id)
 );
 
-CREATE TABLE titleauthors
+CREATE TABLE `publications`.`titleauthors`
 (
   au_id    INT,
   FOREIGN KEY (au_id) REFERENCES authors (au_id),
